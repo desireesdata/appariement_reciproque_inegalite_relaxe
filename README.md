@@ -1,7 +1,7 @@
 La seule matrice de similarité qui est un espace métrique est celle qui compare la vérité terrain --> vérité terrain.
 Autrement dit, seuls les matchs parfaits respectent les propriétés d'un espace métrique (symétrie / inégalité triangulaire / séparation).
 
-> Rapidement : 1) on exclut toutes les matrices rectangulaires car la symétrie ne peut pas être respectée. Il n'y a que les matrices carrées $n.n$. La notion de distance exclut toutes les matrices carrés qui ne respectent pas l'inégalité triangulaire et ne reste que les matrices vt --> vt qui la respecte
+> Rapidement : 1) on exclut toutes les matrices rectangulaires car la symétrie ne peut pas être respectée ("la diagonale tombe toujours à côté d'un des deux coins"). Il n'y a que les matrices carrées $n.n$. La notion de distance exclut toutes les matrices carrés qui ne respectent pas l'inégalité triangulaire parce qu'il est impossible d'avoir $d(AC) > d(AB) + d(BC)$ et ne reste que les matrices vt --> vt qui la respecte.
 
 Cela veut dire que trouver des matchs revient à trouver les zones qui vérifient ces propriétés métriques, mais à condition de relacher l'inégalité triangulaire à cause du bruit.
 
