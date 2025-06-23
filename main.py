@@ -19,6 +19,12 @@ def entropy_at_best_match(row, window=5):
     probs = softmax(-segment)
     return entropy(probs)
 
+# Relaxation basée sur le gradient local (à voir)
+def local_gradient_epsilon(row, beta=1.0):
+    grad = np.abs(np.gradient(row))
+    score = 1 / (1 + np.mean(grad))
+    return beta * score
+
 # 1. Entropies locales
 local_epsilons = np.array([entropy_at_best_match(D[i, :], window=5) for i in range(n)])
 
