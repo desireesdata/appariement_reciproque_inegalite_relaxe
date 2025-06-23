@@ -33,4 +33,5 @@ Entropie moyenne : 4.687103415570865
 Distance moyenne : 0.048484848484848485
 
 ``` 
-Les numéros de pages (listes de nombres) augmentent significativement l'entropie étant donnée les faibles distances de Levenshtein.
+Les numéros de pages (listes de nombres) augmentent significativement l'entropie étant donné les faibles distances de Levenshtein.
+Cependant leur distance est toujours très faible ou quasi-nulle !

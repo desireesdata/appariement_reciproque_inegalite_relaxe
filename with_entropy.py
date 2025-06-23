@@ -58,6 +58,13 @@ for i, j in matches:
 max_entropy = np.log(m)
 mean_entropy = sum(local_epsilons)/len(filtered_matches)
 mean_distances = []
+
+# normalized_mean_entropy = float(mean_entropy / max_entropy)
+# normalized_mean_distance = float(mean_distances / np.max(D))
+# weight_distance = 0.5
+# weight_entropy = 0.5
+# composite_score = 1 - (weight_distance * normalized_mean_distance + weight_entropy * normalized_mean_entropy)
+
 print("Appariements mutuels et cohérents avec la relaxation triangulaire souple): \n")
 for i, j in filtered_matches:
     mean_distances.append(D[i,j])
