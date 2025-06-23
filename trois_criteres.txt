@@ -6,7 +6,7 @@ Bachelet Alexandre <-> Bachelet (Alexandre) (d = 2, ε = 0.00)
 V. Alexandre Bachelet <-> Alexandre Bachelet (d = 3, ε = 0.00)
 Barthou (Louis) <-> Barthou (Louis) (d = 0, ε = 0.00)
 2 <-> 2 (d = 0, ε = 0.37)
-Barthou (Louis) <aucun match>
+Barthou (Louis) <-> Barthou (Louis) (d = 0, ε = 0.00)
 394 <-> 394 (d = 0, ε = 1.08)
 396 <-> 396 (d = 0, ε = 1.35)
 397 <-> 397 (d = 0, ε = 1.31)
@@ -65,7 +65,7 @@ Bérard (Léon) <-> Bérard (Léon) (d = 0, ε = 0.00)
 1593 <aucun match>
 1091 <-> 1091 (d = 0, ε = 0.93)
 1389 <-> 1389 (d = 0, ε = 0.93)
-1285 <aucun match>
+1285 <-> 1285 (d = 0, ε = 0.81)
 1549 <-> 1549 (d = 0, ε = 1.04)
 1552 <-> 1552 (d = 0, ε = 0.93)
 1747 <-> 1747 (d = 0, ε = 0.81)
@@ -94,7 +94,7 @@ Bérard (Victor) <aucun match>
 1267 <aucun match>
 1415 <aucun match>
 Bérenger (Henry) <-> Bérenger (Henry) (d = 0, ε = 0.00)
-148 <aucun match>
+148 <-> 148 (d = 0, ε = 0.73)
 681 <-> 681 (d = 0, ε = 0.53)
 754 <-> 754 (d = 0, ε = 0.60)
 865 <-> 865 (d = 0, ε = 0.52)
@@ -149,7 +149,7 @@ Blois (comte Louis de) <-> Blois (comte Louis de) (d = 0, ε = 0.00)
 622 <-> 622 (d = 0, ε = 0.68)
 709 <-> 709 (d = 0, ε = 0.81)
 901 <-> 901 (d = 0, ε = 0.93)
-958 <aucun match>
+958 <-> 958 (d = 0, ε = 0.68)
 1062 <-> 1062 (d = 0, ε = 0.60)
 1151 <-> 1151 (d = 0, ε = 0.81)
 1217 <-> 1217 (d = 0, ε = 0.93)
@@ -158,17 +158,17 @@ Blois (comte Louis de) <-> Blois (comte Louis de) (d = 0, ε = 0.00)
 1273 <-> 1273 (d = 0, ε = 0.93)
 1355 <-> 1355 (d = 0, ε = 0.93)
 1361 <-> 1361 (d = 0, ε = 0.67)
-1695 <aucun match>
+1695 <-> 1695 (d = 0, ε = 0.77)
 Boivin-Champeaux <-> Boivin-Champeaux (d = 0, ε = 0.00)
 1 <-> 1 (d = 0, ε = 0.53)
-344 <aucun match>
+344 <-> 344 (d = 0, ε = 1.33)
 376 <-> 376 (d = 0, ε = 1.15)
 379 <-> 379 (d = 0, ε = 1.06)
 406 <-> 406 (d = 0, ε = 0.67)
 784 <-> 784 (d = 0, ε = 0.84)
-1590 <aucun match>
+1590 <-> 1590 (d = 0, ε = 0.81)
 Bompard (Maurice) <-> Bompard (Maurice) (d = 0, ε = 0.00)
-754 <aucun match>
+754 <-> 754 (d = 0, ε = 0.60)
 Bon <-> Bon (d = 0, ε = 0.27)
 1417 <-> 1417 (d = 0, ε = 0.36)
 Borgeot (Charles) <-> Borgeot (Charles) (d = 0, ε = 0.00)
@@ -189,4 +189,4 @@ Bosc (Jean) <-> Bosc (Jean) (d = 0, ε = 0.00)
 V. Jean Bosc <-> Jean Bosc (d = 3, ε = 0.01)
 Bourdeaux (Henry) <-> Bourdeaux (Henry) (d = 0, ε = 0.00)
 799 <-> 799 (d = 0, ε = 0.44)
-1066 <aucun match>
+1066 <-> 1066 (d = 0, ε = 1.33)

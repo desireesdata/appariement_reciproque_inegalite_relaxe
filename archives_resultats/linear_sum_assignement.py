@@ -1,6 +1,7 @@
 import numpy as np
 from scipy.special import softmax
 from scipy.stats import entropy
+from scipy.optimize import linear_sum_assignment
 import jellyfish
 from get_text_from_json import truth, predicted
 
@@ -10,6 +11,7 @@ def levenshtein_matrix(A, B):
 D = levenshtein_matrix(truth, predicted)
 n, m = D.shape
 
+# Entropie locale autour du meilleur match
 def entropy_at_best_match(row, window=5):
     j_best = np.argmin(row)
     half = window // 2
@@ -19,62 +21,45 @@ def entropy_at_best_match(row, window=5):
     probs = softmax(-segment)
     return entropy(probs)
 
-# 1. Entropies locales
+# Calcul des entropies locales pour chaque ligne
 local_epsilons = np.array([entropy_at_best_match(D[i, :], window=5) for i in range(n)])
 
-# 2. Appariements parfaits (séparation stricte)
-perfect_matches = [(i, j) for i in range(n) for j in range(m) if D[i, j] == 0]
-matched_truth = {i for i, _ in perfect_matches}
-matched_pred = {j for _, j in perfect_matches}
+# Si le nombre de lignes et colonnes est différent, on ajuste la matrice
+if n > m:
+    # Compléter predicted avec des "dummy" à coût max
+    padding = np.full((n, n - m), fill_value=D.max() + 1)
+    D_padded = np.hstack((D, padding))
+elif m > n:
+    # Compléter truth avec des "dummy"
+    padding = np.full((m - n, m), fill_value=D.max() + 1)
+    D_padded = np.vstack((D, padding))
+else:
+    D_padded = D
 
-# 3. Appariements symétriques non parfaits
-matches = []
-for i in range(n):
-    if i in matched_truth:
-        continue
-    j = np.argmin(D[i])
-    if j in matched_pred:
-        continue
-    i_back = np.argmin(D[:, j])
-    if i == i_back:
-        matches.append((i, j))
+# Appariement optimal
+row_ind, col_ind = linear_sum_assignment(D_padded)
 
-# 4. Fusion des deux
-all_matches = perfect_matches + matches
-
-# 5. Filtrage avec inégalité triangulaire
+# Filtrage pour ignorer les appariements sur les "dummy"
 filtered_matches = []
+mean_distances = []
 matched_truth_indices = set()
 
-for i, j in all_matches:
-    if D[i, j] == 0:
+for i, j in zip(row_ind, col_ind):
+    if i < n and j < m:
         filtered_matches.append((i, j))
         matched_truth_indices.add(i)
-        continue
+        mean_distances.append(D[i, j])
 
-    epsilon = local_epsilons[i]
-    is_consistent = True
-    for k in range(m):
-        if k != j:
-            if D[i, j] > D[i, k] + D[np.argmin(D[:, j]), j] + epsilon:
-                is_consistent = False
-                break
-    if is_consistent:
-        filtered_matches.append((i, j))
-        matched_truth_indices.add(i)
-
-# 6. Affichage des appariements
-print("Appariements (ou absence) :\n")
-mean_distances = []
+# Affichage
+print("Appariements optimaux :\n")
 for i in range(n):
     if i in matched_truth_indices:
         j = [j_ for i_, j_ in filtered_matches if i_ == i][0]
         print(f"{truth[i]} <-> {predicted[j]} (d = {D[i, j]}, ε = {local_epsilons[i]:.2f})")
-        mean_distances.append(D[i, j])
     else:
         print(f"{truth[i]} <aucun match>")
 
-# 7. Statistiques globales
+# Statistiques
 max_entropy = np.log(m)
 mean_entropy = sum(local_epsilons[i] for i in matched_truth_indices) / len(filtered_matches) if filtered_matches else 0
 mean_distance = sum(mean_distances) / len(mean_distances) if mean_distances else 0
@@ -83,7 +68,7 @@ print(f"\nEntropie moyenne : {mean_entropy:.2f}")
 print(f"Distance moyenne : {mean_distance:.2f}")
 print(f"Entropie maximale : {max_entropy:.2f}")
 
-# 8. Normalisation + score global
+# Score de matching
 max_len_truth = max(len(s) for s in truth)
 max_len_predicted = max(len(s) for s in predicted)
 d_max = max(max_len_truth, max_len_predicted)
@@ -96,6 +81,6 @@ w_e = 0.5
 match_score = w_d * (1 - normalized_distance) + w_e * (1 - normalized_entropy ** 0.5)
 match_score_percent = match_score * 100
 
-print(f"\nScore de confiance du matching : {match_score:.3f} (sur 1) / {match_score_percent:.1f} %")
+print(f"\nScore de confiance du matching (global) : {match_score:.3f} / {match_score_percent:.1f} %")
 coverage = len(set(j for _, j in filtered_matches)) / m
 print(f"Taux de couverture des 'predicted' : {coverage:.2%}")
