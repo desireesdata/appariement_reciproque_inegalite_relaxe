@@ -8,7 +8,7 @@ Le défaut de cette approche est de devoir trouver un seuil de "relâchement" de
 Ici, c'est un calcul d'entropie locale qui a été choisie, mais on pourrait imaginer d'autres méthodes !
 
 Extrait sortie :
- 
+
 ```
 Babin-Chevaye  <->  Babin-Chevaye  (d = 0, ε = 0.01)
   8  <->  8  (d = 0, ε = 4.52)
@@ -18,4 +18,15 @@ Babin-Chevaye  <->  Babin-Chevaye  (d = 0, ε = 0.01)
   V. Alexandre Bachelet  <->  Alexandre Bachelet  (d = 3, ε = 0.00)
   Barthou (Louis)  <->  Barthou (Louis)  (d = 0, ε = 0.01)
   2  <->  2  (d = 0, ε = 4.54)
+  [...]
+    Borrel (Antoine)  <->  Borrel (Antoine)  (d = 0, ε = 0.00)
+  1418  <->  1418  (d = 0, ε = 4.55)
+  Bosc (Jean)  <->  Bosc (Jean)  (d = 0, ε = 0.06)
+  V. Jean Bosc  <->  Jean Bosc  (d = 3, ε = 0.21)
+  Bourdeaux (Henry)  <->  Bourdeaux (Henry)  (d = 0, ε = 0.01)
+  799  <->  799  (d = 0, ε = 4.53)
+
+Entropie moyenne : 4.687103415570865 
+Distance moyenne : 0.048484848484848485
+
 ``` 
