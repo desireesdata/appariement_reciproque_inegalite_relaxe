@@ -1,3 +1,5 @@
+Appariements (ou absence) :
+
 Babin-Chevaye <-> Babin-Chevaye (d = 0, ε = 0.00)
 8 <-> 8 (d = 0, ε = 0.52)
 582 <-> 582 (d = 0, ε = 0.52)
@@ -190,3 +192,10 @@ V. Jean Bosc <-> Jean Bosc (d = 3, ε = 0.01)
 Bourdeaux (Henry) <-> Bourdeaux (Henry) (d = 0, ε = 0.00)
 799 <-> 799 (d = 0, ε = 0.44)
 1066 <-> 1066 (d = 0, ε = 1.33)
+
+Entropie moyenne : 0.74
+Distance moyenne : 0.05
+Entropie maximale : 5.15
+
+Score de confiance du matching : 0.810 (sur 1) / 81.0 %
+Taux de couverture des 'predicted' : 100.00%

@@ -64,12 +64,13 @@ for i, j in all_matches:
         matched_truth_indices.add(i)
 
 # 6. Affichage des appariements
-print("Appariements (ou absence) :\n")
+# print("Appariements (ou absence) :\n")
 mean_distances = []
 for i in range(n):
     if i in matched_truth_indices:
         j = [j_ for i_, j_ in filtered_matches if i_ == i][0]
-        print(f"{truth[i]} <-> {predicted[j]} (d = {D[i, j]}, ε = {local_epsilons[i]:.2f})")
+        print(f"{truth[i]} <-> {predicted[j]}")
+        # print(f"{truth[i]} <-> {predicted[j]} (d = {D[i, j]}, ε = {local_epsilons[i]:.2f})")
         mean_distances.append(D[i, j])
     else:
         print(f"{truth[i]} <aucun match>")
