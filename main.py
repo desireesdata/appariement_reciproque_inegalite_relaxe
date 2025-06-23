@@ -23,12 +23,29 @@ def levenshtein_matrix(A, B):
 D = levenshtein_matrix(truth, predicted)
 n, m = D.shape
 
-# Entropie locale (pour quantifier le bruit et ajuster le "relâchement de bride" de l'inégalité triangulaire localement
+# Entropie globale (pour quantifier le bruit et ajuster le "relâchement de bride" de l'inégalité triangulaire localement
 def local_entropy(row, alpha=1.0):
     probs = softmax(-row)
     return alpha * entropy(probs)
 
-local_epsilons = np.array([local_entropy(D[i, :]) for i in range(n)])
+# Entropie avec fenetre glissante autour de la meilleure val
+def entropy_at_best_match(row, window=5):
+    j_best = np.argmin(row)
+    start = max(0, j_best - window // 2)
+    end = min(len(row), start + window)
+    segment = row[start:end]
+    probs = softmax(-segment)
+    return entropy(probs)
+
+# Relaxation basée sur le gradient local (à voir)
+def local_gradient_epsilon(row, beta=1.0):
+    grad = np.abs(np.gradient(row))
+    score = 1 / (1 + np.mean(grad))
+    return beta * score
+
+# local_epsilons = np.array([local_entropy(D[i, :]) for i in range(n)])
+# local_epsilons = [local_gradient_epsilon(D[i, :], beta=1.5) for i in range(n)]
+local_epsilons = np.array([entropy_at_best_match(D[i, :], window=5) for i in range(n)])
 
 # Appariements mutuels, qui satisfont la propriété de symétrie
 matches = []
@@ -57,18 +74,14 @@ for i, j in matches:
 # Résultats 
 max_entropy = np.log(m)
 mean_entropy = sum(local_epsilons)/len(filtered_matches)
+# median_entropy = np.median()
 mean_distances = []
-
-# normalized_mean_entropy = float(mean_entropy / max_entropy)
-# normalized_mean_distance = float(mean_distances / np.max(D))
-# weight_distance = 0.5
-# weight_entropy = 0.5
-# composite_score = 1 - (weight_distance * normalized_mean_distance + weight_entropy * normalized_mean_entropy)
 
 print("Appariements mutuels et cohérents avec la relaxation triangulaire souple): \n")
 for i, j in filtered_matches:
     mean_distances.append(D[i,j])
-    print(f"  {truth[i]}  <->  {predicted[j]}  (d = {D[i, j]}, ε = {local_epsilons[i]:.2f})")
+    print(f"{truth[i]}  <->  {predicted[j]}  (d = {D[i, j]}, ε = {local_epsilons[i]:.2f})")
+
 mean_distances = sum(mean_distances)/len(mean_distances)
 print(f"\nEntropie moyenne : {mean_entropy} \nDistance moyenne : {mean_distances}")
 print(f"Entropie maximale : {max_entropy}")

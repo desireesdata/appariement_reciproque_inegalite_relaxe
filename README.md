@@ -35,3 +35,26 @@ Distance moyenne : 0.048484848484848485
 ``` 
 Les numéros de pages (listes de nombres) augmentent significativement l'entropie étant donné les faibles distances de Levenshtein.
 Cependant leur distance est toujours très faible ou quasi-nulle !
+
+Avec une entropie basée sur une fenêtre glissante (fonction `def entropy_at_best_match()`), on a des résultats plus sûrs :
+
+```
+Entropie moyenne : 0.79
+Distance moyenne : 0.05
+Entropie maximale : 5.15
+
+Score de confiance du matching : 0.803 (sur 1) / 80.3 %
+```
+
+Calcul du score :
+
+```
+# Score final
+w_d = 0.5  # poids de la distance
+w_e = 0.5  # poids de l'entropie
+match_score = w_d * (1 - normalized_distance) + w_e * (1 - normalized_entropy ** 0.5)
+# match_score = (1 - normalized_distance) * (1 - normalized_entropy ** 0.5)
+match_score_percent = match_score * 100
+
+print(f"\nScore de confiance du matching : {match_score:.3f} (sur 1) / {match_score_percent:.1f} %")
+```
