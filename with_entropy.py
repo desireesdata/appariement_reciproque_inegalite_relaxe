@@ -55,6 +55,7 @@ for i, j in matches:
         filtered_matches.append((i, j))
 
 # Résultats 
+max_entropy = np.log(m)
 mean_entropy = sum(local_epsilons)/len(filtered_matches)
 mean_distances = []
 print("Appariements mutuels et cohérents avec la relaxation triangulaire souple): \n")
@@ -63,3 +64,4 @@ for i, j in filtered_matches:
     print(f"  {truth[i]}  <->  {predicted[j]}  (d = {D[i, j]}, ε = {local_epsilons[i]:.2f})")
 mean_distances = sum(mean_distances)/len(mean_distances)
 print(f"\nEntropie moyenne : {mean_entropy} \nDistance moyenne : {mean_distances}")
+print(f"Entropie maximale : {max_entropy}")

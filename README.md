@@ -28,7 +28,9 @@ V. Jean Bosc  <->  Jean Bosc  (d = 3, ε = 0.21)
 Bourdeaux (Henry)  <->  Bourdeaux (Henry)  (d = 0, ε = 0.01)
 799  <->  799  (d = 0, ε = 4.53)
 
+Entropie maximale : 5.147494476813453
 Entropie moyenne : 4.687103415570865 
 Distance moyenne : 0.048484848484848485
 
 ``` 
+Les numéros de pages (listes de nombres) augmentent significativement l'entropie étant donnée les faibles distances de Levenshtein.
